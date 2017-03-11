@@ -91,6 +91,8 @@ Note: It isn't necessary to use 2 different addresses, as you can just as easily
 ####Detecting the Forking Block
 Knowing which block is the forking block for each chain is important.  The forking block is the first block to come after the last common block (LCB) shared by  both chains.  Detection of the forking block can be done by first finding the LCB shared between both chains.  This needs to be only done once. To do so one needs to query back from the chain tip on both nodes for block hashes, until the LCB is found. The forking block for each chain will be the block immediately following the LCB, respectively.
 
+It should be mentioned that detection of the forking block is much simpler from a node running on the majority chain. This is due to the fact that the majority chain has the minority chain in the orphan pool and can scan its blocks. The minority chain, in contrast does not have the majority chain stored as their blocks were considered invalid and likely discarded.
+
 ####Coin Separation Management
 Exchanges intent on supporting both forks should split their hot wallets into 3 buckets, Red, Blue, and pre-fork 'neutral' sets. Management of both coins as separate products on the trading platform centres around the separation of the coins at point of deposit (or withdrawal) into (or from) the exchange, and ensuring that withdrawals are processed using only separated coins from the respective pools. 
 

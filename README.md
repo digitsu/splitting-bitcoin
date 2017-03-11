@@ -1,5 +1,5 @@
 #Mitigating Bitcoin Forking Risk during Network Upgrade
-####How to survive the Fork Split, a Guide for Exchanges and Businesses
+###How to Manage a Fork Split, a Guide for Exchanges and Businesses
 
 Jerry Chan
 @digitsu

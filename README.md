@@ -112,7 +112,7 @@ The second option is leave the reserves as they are and rely on separating the p
 #####Withdrawal Process
 The withdrawal of coins is the most important part of managing a split coin process.  This involves ensuring that the right coin is sent to the customer on withdrawals.  This means employing a coin separation process that is mandatory on withdrawals, which is only required if the exchanges main reserves have not already been separated.
 
-**Taint Separation Process**
+#####Taint Separation Process
 In order to separate outgoing coins, one can employ the "Taint Separation" process.  In this process, the withdrawal transaction is created manually on the chain that the customer is attempting to withdraw on, and an UTXO from the pure split coin address is added to the transaction to "taint" it.  The addition of a post-fork UTXO from one of the 'pure' pools ensures that the withdrawal transaction cannot be valid both Red and Blue chains at the same time.
 
 ###Exchange Customer Considerations
@@ -140,6 +140,10 @@ This policy is safe, as long as it is made aware to the customers. Even though a
 ##Considerations - Wallet Users
 Users have the option of totally ignoring the split or trying to capitalize on the split by selling the coins that they do not support to extract value. Keeping your coins separate would require using a wallet that would support each chain. Whether or not a wallet supports the minority fork will depend on the wallet.
 
+Most importantly for wallet developers if they choose to support both chains is ensuring a good source of market data for displaying the price of the minority coin. It is through this relative price difference that users will have a hint of when they may be paying with the wrong coin.  
+
+Additionally, if a server based wallet is connected to the minority 'Blue' chain whether through accident or negligence, the customer may be made to think that they receiving coins, only to not see them show up in their wallet balance.  In this situation the best course of action is have the developer of the wallet upgrade the software to support the majority chain, at which point the users funds will be made available again.  If the wallet developer is unwilling to change the software, extracting the coins on the other chain from the wallet may prove difficult.  For this reason it is advised to only use wallets that support the longest proof-of-work, or majority hashpower chain.
+
 ####Web Wallets
 You are at the mercy of which chain the web service will support. It will be doubtful that they will support both, most likely just the longest chain. They may be able to provide the ability to choose which chain you want to connect to should they decide to support both as a service.
 
@@ -157,6 +161,7 @@ The easiest of the options, you can just run the software of the chain you wish 
 ##Considerations - Businesses and Payment Processors
 As a business, the best option is to follow the longest chain. Supporting both chains will be confusing to your customers and cause support issues as customers accidentally send you prefork coins and you would be required to refund them back separated coins on the fork that they did not intend to pay with. Unlike exchanges, supporting a minority chain does not generate additional profit for a business as it does for an exchange which can stand to make more trading fees. Supporting the minority chain is only a net cost to your business. But if you want to support both chains for ideological reasons, follow the same instructions on keeping your coins separate found in the Exchange considerations section.  One recommendation is to run a client node for each of the major forks in order to maintain visibility into the other chain.  This will assist in managing customer satisfaction in the case where clients accidentally pay with the wrong coin, and a refund needs to be processed.  This is a necessity for merchant payment processing businesses.
 
+Additionally merchant processors will be unable to support the minority chain unless there is a reliable source of market data for exchange prices for the minority coin.  At any rate it will be a risky endeavour to support it beyond the ability to process a customer refund if an accidental payment is made.
 
 ##General Fork Risks
 ###UASF Risk

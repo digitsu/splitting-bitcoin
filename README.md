@@ -20,13 +20,13 @@ The main impetus for this document is the recent suggestions emanating from the 
 ##Types of Chain Forks
 First we should enumerate the types of splits that can happen.
 ####Soft Fork
-A fork in which a new consensus rule is added, which is a subset of the previous rules. Blocks conforming to the newer more strict rules are valid in the new chain, and the old chain, while blocks produced by the old chain under the previous less strict rules may not be valid on the new chain.
+A fork in which a new consensus rule is added, making the new rules stricter than the previous rules. Blocks conforming to the newer more strict rules are valid in the new chain, and the old chain, while blocks produced by the old chain under the previous less strict rules may not be valid on the new chain.
 ####Hard Fork
 A fork in which a consensus rule is removed or relaxed. Blocks conforming to the new consensus rules are valid in the new chain only, and not on the old chain, while blocks produced by the old chain are valid in the new one.
-####Minority Fork (Hard/Soft)
-This is when a _minority hashrate_ supported chain deliberately forks the network by publishing a block which the **majority** hashrate supported chain will not accept. Additionally, the minority chain can arbitrarily create a rule, enforced only by them that makes all the future blocks produced by the majority chain invalid to them (User Activated Soft Fork).
-####Majority Fork (Hard/Soft)
-This is when a _majority hashrate_ supported chain deliberately forks the network by publishing a block which the **minority** hashrate supported chain will not accept. 
+####Minority Fork
+This is when a _minority hashrate_ supported chain deliberately forks the network by rejecting a block which the **majority** hashrate supported chain accepts. The minority chain can arbitrarily create a rule, enforced only by them that makes all the future blocks produced by the majority chain invalid to them (User Activated Soft Fork). Minority forks are always soft forks.
+####Majority Fork
+This is when a _majority hashrate_ supported chain deliberately forks the network by publishing a block which the **minority** hashrate supported chain will not accept. Majority forks will always be hard forks.
 
 ####User Activated Soft Fork (UASF)
 This type of soft fork is done when a majority of the user nodes (wallets, full node) upgrade to a version of the software which coordinates a block height after which a certain new validity rule is enforced, for example a rule that would say that a block in which a UTXO that isn’t a paid to a new SegWit output is invalid.  This can be done ***without*** a majority of hashpower supporting it. Generally speaking it is a specific kind of Minority Fork. Where Majority Forks favour the side with more supporting hashpower, UASFs favour the side with the most economic node support.

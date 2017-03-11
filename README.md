@@ -20,7 +20,7 @@ The main impetus for this document is the recent suggestions emanating from the 
 ##Types of Chain Forks
 First we should enumerate the types of splits that can happen.
 ####Soft Fork
-A fork in which a new consensus rule is added, which is a subset of the previous rules. Blocks conforming to the newer more strict rules are valid in the new chain, and the old chain, while blocks produced by the old chain under the previous less strict rules are not valid in the new chain.
+A fork in which a new consensus rule is added, which is a subset of the previous rules. Blocks conforming to the newer more strict rules are valid in the new chain, and the old chain, while blocks produced by the old chain under the previous less strict rules may not be valid on the new chain.
 ####Hard Fork
 A fork in which a consensus rule is removed or relaxed. Blocks conforming to the new consensus rules are valid in the new chain only, and not on the old chain, while blocks produced by the old chain are valid in the new one.
 ####Minority Fork (Hard/Soft)

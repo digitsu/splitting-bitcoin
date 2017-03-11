@@ -1,4 +1,4 @@
-#Surviving the Upcoming Bitcoin Fork Split
+#Mitigating Bitcoin Forking Risk during Network Upgrade
 ####How to survive the Fork Split, a Guide for Exchanges and Businesses
 
 Jerry Chan

@@ -43,6 +43,8 @@ Soft forks create a re-org risk on one forked side only (the other chain) due to
 
 This risk is only a factor if the more restrictive chain has more PoW hashing power by a large enough margin such that it can outpace the original chain’s hashing power, and thus find more successive blocks in a row than the original chain. This re-org risk is something that the original chain must accept.  If this risk is deemed too excessive it may be possible that a one-time checkpoint be created after the Forking Block so that it cannot be re-org’d beyond this checkpoint.  One possible way of implementing this would be a soft-fork rule added which would make any block which does not contain the Forking Block as an ancestor invalid.
 
+Re-org risk is balanced against the risk of following a minority chain. If one desires to always follow the most work chain, then re-org risk cannot be avoided. Adding a checkpoint to avoid re-org risk introduces the risk of following a minority chain and diverging from the economic majority.
+
 ####Split Coin Assets
 Coins in existence at the point of the fork will become 1 of 3 possible types, pre-fork, post-fork Red, or post-fork Blue. It is easier to think of this in terms of UTXOs. A pre-fork UTXO can become a post-fork A or B UTXO, but not vice-versa (a post-fork A, or post-fork B UTXO cannot be reverted to a pre-fork UTXO). These resulting UTXOs can only exist on one chain or the other but not both.
 

@@ -19,10 +19,10 @@ The main impetus for this document is the recent suggestions emanating from the 
 
 ##Types of Chain Splits
 First we should enumerate the types of splits that can happen. Chain splits are _always_ caused by a hash rate minority enforcing validity rules that the majority does not enforce.
-####Soft Fork Change
-A soft fork change is when new consensus rule is added to node implementations, making the new rules stricter than the previous rules. Blocks conforming to the newer more strict rules are considered valid by non-upgraded nodes, while blocks produced by old software under the previous less strict rules may not be valid according to the new rules.
-####Hard Fork Change
-A hard fork change is when consensus rule is removed or relaxed. Blocks conforming to the new consensus rules are valid in the upgraded clients only, and may not be considered valid by old clients. Blocks produced by the older clients are valid in the new one.
+####Soft Fork
+A soft fork is a software change where a new consensus rule is added to node implementations, making the new rules stricter than the previous rules. Blocks conforming to the newer more strict rules are considered valid by non-upgraded nodes, while blocks produced by old software under the previous less strict rules may not be valid according to the new rules.
+####Hard Fork
+A hard fork is a change to node implementations in which consensus rule is removed or relaxed. Blocks conforming to the new consensus rules are valid in the upgraded clients only, and may not be considered valid by old clients. Blocks produced by the older clients are valid in the new one.
 ####Minority Fork
 This is when a _minority hashrate_ supported chain deliberately splits the network by rejecting a block which the **majority** hashrate supported chain accepts. The minority chain can arbitrarily create a rule, enforced only by them that makes all the future blocks produced by the majority chain invalid to them (User Activated Soft Fork). Minority forks are always soft forks.
 ####Majority Fork

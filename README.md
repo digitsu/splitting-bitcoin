@@ -17,16 +17,16 @@ With the Bitcoin community potentially at a cusp with some proponents favouring 
 
 The main impetus for this document is the recent suggestions emanating from the Core development community about an implementation of a User Activated Soft Fork or UASF, (one that can be executed with a *minority* of hashpower supporting it, but with the support of a sufficient number economic nodes) which presents a ___clear and imminent danger___ to the stability of the network, especially for the exchanges and businesses that run on Bitcoin.  Due to the potential of the chain splitting into 2 or even 3 forks in the case of a User Activated Soft Fork, businesses and especially exchanges will be in danger of losing customer funds if they are not prepared to handle the situation particularly if a UASF were to happen without warning.  The purpose of this document is to prepare such businesses so that they can continue to protect their customers funds in such an event, regardless of whether they intend to actually support multiple fork coins or not.
 
-##Types of Chain Forks
-First we should enumerate the types of splits that can happen.
-####Soft Fork
-A fork in which a new consensus rule is added, which is a subset of the previous rules. Blocks conforming to the newer more strict rules are valid in the new chain, and the old chain, while blocks produced by the old chain under the previous less strict rules may not be valid on the new chain.
-####Hard Fork
-A fork in which a consensus rule is removed or relaxed. Blocks conforming to the new consensus rules are valid in the new chain only, and not on the old chain, while blocks produced by the old chain are valid in the new one.
-####Minority Fork (Hard/Soft)
-This is when a _minority hashrate_ supported chain deliberately forks the network by publishing a block which the **majority** hashrate supported chain will not accept. Additionally, the minority chain can arbitrarily create a rule, enforced only by them that makes all the future blocks produced by the majority chain invalid to them (User Activated Soft Fork).
-####Majority Fork (Hard/Soft)
-This is when a _majority hashrate_ supported chain deliberately forks the network by publishing a block which the **minority** hashrate supported chain will not accept. 
+##Types of Chain Splits
+First we should enumerate the types of splits that can happen. Chain splits are _always_ caused by a hash rate minority enforcing validity rules that the majority does not enforce.
+####Soft Fork Change
+A soft fork change is when new consensus rule is added to node implementations, making the new rules stricter than the previous rules. Blocks conforming to the newer more strict rules are considered valid by non-upgraded nodes, while blocks produced by old software under the previous less strict rules may not be valid according to the new rules.
+####Hard Fork Change
+A hard fork change is when consensus rule is removed or relaxed. Blocks conforming to the new consensus rules are valid in the upgraded clients only, and may not be considered valid by old clients. Blocks produced by the older clients are valid in the new one.
+####Minority Fork
+This is when a _minority hashrate_ supported chain deliberately splits the network by rejecting a block which the **majority** hashrate supported chain accepts. The minority chain can arbitrarily create a rule, enforced only by them that makes all the future blocks produced by the majority chain invalid to them (User Activated Soft Fork). Minority forks are always soft forks.
+####Majority Fork
+This is when a _majority hashrate_ supported chain deliberately splits the network by publishing a block which the **minority** hashrate supported chain will not accept. Majority forks will always be hard forks.
 
 ####User Activated Soft Fork (UASF)
 This type of soft fork is done when a majority of the user nodes (wallets, full node) upgrade to a version of the software which coordinates a block height after which a certain new validity rule is enforced, for example a rule that would say that a block in which a UTXO that isn’t a paid to a new SegWit output is invalid.  This can be done ***without*** a majority of hashpower supporting it. Generally speaking it is a specific kind of Minority Fork. Where Majority Forks favour the side with more supporting hashpower, UASFs favour the side with the most economic node support.

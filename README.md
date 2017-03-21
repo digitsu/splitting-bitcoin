@@ -86,7 +86,8 @@ The method to manually split coins is relatively simple, and can be employed to 
 - Starting with A (which may be cold storage), create a transaction that sends all coins to B, using a library where you can assemble a raw transaction using UTXOs, (such as Bitcore) mix in 1 purely split 'Blue' UTXO into the inputs of the txn called A->B. 
 - Alternatively, one can create the transaction to be of size 999,999 bytes long, as this txn can only be valid on the >1MB chain.
 - Post it to the network (which chain doesn't matter). Wait until A->B confirms on the Blue chain (it should confirm on same chain as the tainted mixed UXTO referred to in the inputs). 
-- Then on the other chain's node, create an A->R transaction. Send this txn to the Red chain, and you now have purely split coins, Blue coins in B, and Red coins in R, from the original A address.
+- Then on the other chain's node, create an A->R transaction. Send this txn to the Red chain. 
+- You now have purely split coins, Blue coins in B, and Red coins in R, from the original A address.
 
 Note: It isn't necessary to use 2 different addresses, as you can just as easily keep both split coins in address B, but having different addresses may avoid confusion in some accounting software which would otherwise have to be run on both chains simultaneously.  Splitting the coins into 2 different addresses makes keeping internal accounting and reconciliation processes simple, as Blue and Red coins can be treated as 2 separate products.
 

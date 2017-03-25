@@ -1,5 +1,5 @@
 # Mitigating Bitcoin Forking Risk during Network Upgrade
-### How to Manage a Fork Split, a Guide for Exchanges and Businesses
+How to Manage a Fork Split, a Guide for Exchanges and Businesses
 
 Jerry Chan
 @digitsu
@@ -11,24 +11,23 @@ March 6th, 2017
 
 [TOC]
 
-
-## Abstract
+### Abstract
 With the Bitcoin community potentially at a cusp with some proponents favouring supporting their scaling solution at all costs at the expense of a system-wide consensus or compromise, the possibility of a fork split in Bitcoin is at its highest levels since inception. One thing is for certain if the current deadlock between different proposed scaling strategies persists, then the only thing that would result is the inability for Bitcoin to scale. In that light, a fork split, although unfortunate, would seem to be the best outcome for all parties involved. This document assumes that a fork split is thus likely to occur, and attempt to address the technical considerations of such a split on businesses and users operating on the Bitcoin blockchain.
 
 The main impetus for this document is the recent suggestions emanating from the Core development community about an implementation of a User Activated Soft Fork or UASF, (one that can be executed with a *minority* of hash power supporting it, but with the support of a sufficient number economic nodes) which presents a ___clear and imminent danger___ to the stability of the network, especially for the exchanges and businesses that run on Bitcoin.  Due to the potential of the chain splitting into 2 or even 3 forks in the case of a User Activated Soft Fork, businesses and especially exchanges are in danger of losing customer's funds if they are not prepared to handle the situation particularly if a UASF were to happen without warning.  The purpose of this document is to prepare such businesses so that they can continue to protect their customers funds in such an event, regardless of whether they intend to support multiple fork coins or not.
 
 ## Types of Chain Splits
 First we should enumerate the types of splits that can happen. Chain splits are _always_ caused by a hash rate minority enforcing validity rules that the majority does not enforce.
-#### Soft Fork
+### Soft Fork
 A soft fork is a software change where a new consensus rule is added to node implementations, making the new rules stricter than the previous rules. Blocks conforming to the newer more strict rules are considered valid by non-upgraded nodes, while blocks produced by old software under the previous less strict rules may not be valid according to the new rules.
-#### Hard Fork
+### Hard Fork
 A hard fork is a change to node implementations in which consensus rule is removed or relaxed. Blocks conforming to the new consensus rules are valid in the upgraded clients only, and may not be considered valid by old clients. Blocks produced by the older clients are valid in the new one.
-#### Minority Fork
+### Minority Fork
 This occurs when a _minority hash rate_ supported chain deliberately splits the network by rejecting a block which the **majority** hash rate supported chain accepts. The minority chain can arbitrarily create a rule, enforced only by them that makes all the future blocks produced by the majority chain invalid to them (User Activated Soft Fork). Minority forks are always soft forks.
-#### Majority Fork
+### Majority Fork
 This is when a _majority hash rate_ supported chain deliberately splits the network by publishing a block which the **minority** hash rate supported chain will not accept. Majority forks will always be hard forks.
 
-#### User Activated Soft Fork (UASF)
+### User Activated Soft Fork (UASF)
 This type of soft fork is done when a majority of the user nodes (wallets, full nodes) upgrade to a version of the software which coordinates a block height after which a certain new validity rule is enforced, for example, a rule that would say that a block in which a UTXO that isn’t a paid to a new SegWit output is invalid.  This can be done ***without*** a majority of hash power supporting it. Generally speaking, it is a specific kind of Minority Fork. Where Majority Forks favour the side with more supporting hash power, UASFs favour the side with the most economic node support.
 
 This kind of Minority fork has the additional risk of creating 3 resulting forks. Because it is a Minority fork that is instigated by the nodes, it implies that the opposing fork will have a majority of the hashpower at the time it happens. As a reaction to this and to protect themselves from re-org risk (see below), the majority hashpower would likely immediately execute a Majority Soft fork, thus resulting in 3 chains: The Minority soft fork, the Majority soft fork, and the original chain. This state should be temporary, as the resulting original chain would be eventually outpaced by one of the other soft forked chains and merged/re-org'd.
@@ -36,7 +35,7 @@ This kind of Minority fork has the additional risk of creating 3 resulting forks
 This type of fork has the potential for customers to not see withdrawals from exchanges and create customer support issues. Exchanges intending to support both forks should upgrade their node for this chain and ensure that withdrawal requests are processed through this upgraded node for the clients who demand it. Support of this policy implicitly means that the exchange is agreeing to support split coin products in the future. This means any remaining balance on the other chain for the client must be created and maintained within the exchanges accounting system. It would be advised that the exchange split the coins before processing any withdrawals to avoid confusing balances. (see splitting process below)
 
 ## Technical Features of Forks
-#### Re-org risks
+### Re-org risks
 The re-org risk is the risk that sometime after a fork one chain which was formerly the minority chain may somehow overtake the majority chain, and thus cause a reversion of that longer chain back into the minority chain, undoing all the transactions that were done in the chain since the fork. This actually happens naturally as part of normal Bitcoin network operations and re-orgs of a couple blocks deep a few times a week is not uncommon. The difference in the case of a split fork is that the re-org risk is one-sided.
 
 Soft forks create a re-org risk on one forked side only (the other chain) due to the nature of a soft fork, namely that it is an added restriction in the validity rules for a block, it will never accept a longer chain produced by the other fork as it will deem it invalid. The converse is not true, because a block that adheres to the additional validity rule will still be valid on the original chain. Therefore there is a small but increasing chance (so long as the hashpower is greater) that the new more restrictive chain may out pace the original chain and cause a re-org to it. The converse is true for a Hard fork, which has a re-org risk on its own chain but not on the other chain. That is because blocks which are created by the other chain will always be valid on the hard forked one, but the reverse is not true, so a hard fork creates a chain which can be potentially re-org’d without the reciprocal risk on the other chain.
@@ -45,19 +44,19 @@ This risk is only a factor if the more restrictive chain has more PoW hashing po
 
 Re-org risk is balanced against the risk of following a minority chain. If one desires to always follow the most work chain, then re-org risk cannot be avoided. Adding a checkpoint to avoid re-org risk introduces the risk of following a minority chain and diverging from the economic majority.
 
-#### Split Coin Assets
+### Split Coin Assets
 Coins in existence at the point of the fork will become 1 of 3 possible types, pre-fork, post-fork Red, or post-fork Blue. It is easier to think of this in terms of UTXOs. A pre-fork UTXO can become a post-fork A or B UTXO, but not vice-versa (a post-fork A, or post-fork B UTXO cannot be reverted to a pre-fork UTXO). These resulting UTXOs can only exist on one chain or the other but not both.
 
 A pre-fork UTXO may continue to persist, and be usable on both fork A and B, so long as they are not used. Once used in such a way and confirmed in a transaction on either Fork A or B, then the UTXO is said to be permanently split.
 
-#### Concerns of additional “value” created
+### Concerns of additional “value” created
 This is the issue which made some people very concerned when Ethereum underwent a split. They were very well elaborated on in this [Coindesk article](http://www.coindesk.com/ethereums-hard-fork-created-new-kind-double-spend/). In summary though it is not possible to execute these quick ‘arbitrage’ opportunities in the case of a Bitcoin split, because splitting coins is not easy and require quite a bit of work on the part of any exchange or parties acting as one. Additionally, the supply of pure Chain A coins and Chain B coins will be very low initially and accumulate at a very slow rate. This rate is governed by the natural diffusion rate of newly mined coins in addition to the UTXO natural churn rate which will be greatly encumbered in the minority chain due to loss of hashpower and transaction processing capability. This prevents the massive speculative bets that were made on ETC which ended up losing a lot of money for the risky speculators who hoped that if they all bought ETC then most of the miners would follow.
 
-#### Double Spend Attacks
+### Double Spend Attacks
 This is often quoted as a problem with a blockchain split, namely that any transaction valid on one chain is valid on both and thus there is an increased chance of double spending in the case of a split. This is achieved by taking advantage of the fact that your counter-party may be on one chain while you are on another. You can then spend on one chain, but then double spend the same UTXO on the other chain to pay yourself. This is a false attack, as the person who you are paying is generally not going to be interested in receiving payment on both chains.
 
-#### Transaction Replay
-This sort of vulnerability is a variation of the double spend attack, and was first explained prior to the Ethereum split into ETC and ETH, and it affects mostly exchanges who were ill-prepared to handle both forks. It was explained in an article [here](https://medium.com/@timonrapp/how-to-deal-with-the-ethereum-replay-attack-3fd44074a6d8#.s7tw2gpv8), and it is possible to protect against this sort of attack with proper preparation. In summary, exchanges wishing to support both chains post-split and to facilitate trade between the 2 new coins as separate products needs to keep the balances of each split coins separate. In addition coin-separation processes (described below) must be put in place so that exchanges do not inadvertently send out any coins unintentionally.  This is especially important to those who wish to employ a coin separation strategy which manages the separation at the time of withdrawal.
+### Transaction Replay
+This sort of vulnerability is a variation of the double spend attack, and was first explained prior to the Ethereum split into ETC and ETH, and it affects mostly exchanges who were ill-prepared to handle both forks. It was explained in an [article] (https://medium.com/@timonrapp/how-to-deal-with-the-ethereum-replay-attack-3fd44074a6d8#.s7tw2gpv8), how to prepare for this sort of attack. In summary, exchanges wishing to support both chains post-split and to facilitate trade between the 2 new coins as separate products needs to keep the balances of each split coins separate. In addition coin-separation processes (described below) must be put in place so that exchanges do not inadvertently send out any coins unintentionally.  This is especially important to those who wish to employ a coin separation strategy which manages the separation at the time of withdrawal.
 
 ## Considerations - Bitcoin Currency Exchanges
 ### Supporting a split
@@ -179,41 +178,41 @@ Whenever a chain splits resulting in (potentially temporary) new coin balances, 
 
 
 ## Glossary
-##### Forking Block
+* Forking Block
 This is the block that causes the fork split in the chain, and its complement block on the other chain. Presumed to be the first block which is viewed as invalid to one side of the network, but valid to the other. In other words it is the first block that both chains have respectively, that are not in common ancestry.
 
-##### UTXO
+* UTXO
 These are unspent transaction outputs, generated by transactions. The set of UTXOs in a node's memory is the sum total of all the coins available to be spent in the system (excluding unspent coinbase generated coins).
 
-##### Prefork UTXOs, Prefork coins
+* Prefork UTXOs, Prefork coins
 These UTXOs were created from blocks leading up to, but not including, the Forking Block. These are sometimes referred to as ‘mixed UTXOs’ because they can be used on both Red or Blue.
 
-##### Red coins, Blue coins, collectively ‘post-fork UTXOs’ or ‘split coins’
+* Red coins, Blue coins, collectively ‘post-fork UTXOs’ or ‘split coins’
 These UTXOs were minted in coinbases from blocks starting from the Forking Block and afterwards. If an UTXO can trace back to a coinbase generate transaction that is minted from the Forking Block or afterwards, they are considered ‘split coins’. As there are 2 sets of them, one for Chain A and one for Chain B, they should be treated separately and for all intents and purposes, they are separate coins.
 
-##### Coins
+* Coins
 For the purposes of this document, the term is sometimes used to be synonymous to UTXO, as the context will indicate.
 
-##### Coinbase
+* Coinbase
 Otherwise knows as “Generation transactions”, these are coins which are created directly from the minting of the block as their prior transaction.
 
-##### Node
+* Node
 Client software which connects to and participates on a given consensus network. This is sometimes used synonymously to mean client node software with a block explorer.
 
 ## Previous Publications
-##### Hard Fork Risk Analysis
+* Hard Fork Risk Analysis
 http://www.wallstreettechnologist.com/2016/11/18/hard-fork-risk-analysis-if-the-worse-happens-how-bad-can-it-be/
 
-##### Emergent Consensus - a Guide to Forking Safely
+* Emergent Consensus - a Guide to Forking Safely
 http://www.wallstreettechnologist.com/2016/10/14/emergent-consensus-guide-to-forking-safely/
 
-##### Bitcoin XT and the Hard fork that will split us all
+* Bitcoin XT and the Hard fork that will split us all
 http://www.wallstreettechnologist.com/2015/08/19/bitcoin-xt-vs-core-blocksize-limit-the-schism-that-divides-us-all/
 
-##### SegWit Pros and Cons
+* SegWit Pros and Cons
 http://www.wallstreettechnologist.com/2016/12/03/core-segwit-you-need-to-read-this/
 
-##### Lightning Network - Will it Save or Break Bitcoin?
+* Lightning Network - Will it Save or Break Bitcoin?
 http://www.wallstreettechnologist.com/2016/10/03/lightning-network-will-it-save-bitcoin-or-break-it/
 
 

@@ -3,7 +3,7 @@
 
 Jerry Chan
 @digitsu
-[wallstreettechnologist.com](https://wallstreettechnologist.com)
+[wallstreettechnologist.com](http://wallstreettechnologist.com)
 12A8LKsf2qHnF95JXBmui8yBteestqquGz
 
 v0.2.0

@@ -56,14 +56,14 @@ This is the issue which made some people very concerned when Ethereum underwent 
 This is often quoted as a problem with a blockchain split, namely that any transaction valid on one chain is valid on both and thus there is an increased chance of double spending in the case of a split. This is achieved by taking advantage of the fact that your counter-party may be on one chain while you are on another. You can then spend on one chain, but then double spend the same UTXO on the other chain to pay yourself. This is a false attack, as the person who you are paying is generally not going to be interested in receiving payment on both chains.
 
 ### Transaction Replay
-This sort of vulnerability is a variation of the double spend attack, and was first explained prior to the Ethereum split into ETC and ETH, and it affects mostly exchanges who were ill-prepared to handle both forks. It was explained in an [article] (https://medium.com/@timonrapp/how-to-deal-with-the-ethereum-replay-attack-3fd44074a6d8#.s7tw2gpv8), how to prepare for this sort of attack. In summary, exchanges wishing to support both chains post-split and to facilitate trade between the 2 new coins as separate products needs to keep the balances of each split coins separate. In addition coin-separation processes (described below) must be put in place so that exchanges do not inadvertently send out any coins unintentionally.  This is especially important to those who wish to employ a coin separation strategy which manages the separation at the time of withdrawal.
+This sort of vulnerability is a variation of the double spend attack, and was first explained prior to the Ethereum split into ETC and ETH, and it affects mostly exchanges who were ill-prepared to handle both forks. It was explained in an [article](https://medium.com/@timonrapp/how-to-deal-with-the-ethereum-replay-attack-3fd44074a6d8#.s7tw2gpv8), how to prepare for this sort of attack. In summary, exchanges wishing to support both chains post-split and to facilitate trade between the 2 new coins as separate products needs to keep the balances of each split coins separate. In addition coin-separation processes (described below) must be put in place so that exchanges do not inadvertently send out any coins unintentionally.  This is especially important to those who wish to employ a coin separation strategy which manages the separation at the time of withdrawal.
 
 ## Considerations - Bitcoin Currency Exchanges
 ### Supporting a split
 The general strategy to support both coins from an exchange is divided into several categories: 
-1) **run nodes on both chains**
-2) **key management**
-3) **procurement of pure split coins**
+1) **Running Nodes on Both Chains**
+2) **Key Management**
+3) **Procurement of Pure Split Coins**
 4) **detection of the forking block**
 5) **coin separation process**
 
